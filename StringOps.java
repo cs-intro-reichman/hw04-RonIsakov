@@ -37,12 +37,15 @@ public class StringOps {
     // if a letter witch is not a vowel is in upper case making it lower case returning the new string
     for(int i = 0; i < string.length(); i++ ){
         n = string.charAt(i);
+        //cheking if there is a low caps vowel making it caps
         if( n == 'a' || n == 'e' ||  n == 'o' || n == 'u' || n == 'i' ){
             newStr = (newStr + (char) (n - 32));
+            //cheking if there is a caps letter expt vowel making it lower case
         }
-        else if(65 <= n && n <= 90){
+        else if(65 <= n && n <= 90 && n != 'A' && n != 'O'  && n != 'U'  && n != 'I'  && n != 'E'){
             newStr = (newStr + (char) (n + 32));
         }
+        // if its not all the above then puting it in the new string
         else{
             newStr = newStr + n;
         }
@@ -62,7 +65,7 @@ public class StringOps {
         newStr = (newStr + (char) (n + 32));
     } else if (n == ' ') {
         // Skip consecutive spaces
-        while (i < string.length() && string.charAt(i) == ' ') {
+        while (i < string.length() || string.charAt(i) == ' ') {
             i++;
         }
         
