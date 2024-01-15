@@ -22,21 +22,81 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        
+        //String test1 = "One two tHRee world";
+        //System.out.println(capVowelsLowRest(test1));
+        String test2 = "HELLO borld";
+        System.out.println(camelCase(test2));
+        System.out.println("test");
     }
-
+    
+    
     public static String capVowelsLowRest (String string) {
-        // Write your code here:
-        return "";
+    String newStr = "";
+    char n;
+    // cheking if each char of the string is a vowel if it is making it uper case 
+    // if a letter witch is not a vowel is in upper case making it lower case returning the new string
+    for(int i = 0; i < string.length(); i++ ){
+        n = string.charAt(i);
+        if( n == 'a' || n == 'e' ||  n == 'o' || n == 'u' || n == 'i' ){
+            newStr = (newStr + (char) (n - 32));
+        }
+        else if(65 <= n && n <= 90){
+            newStr = (newStr + (char) (n + 32));
+        }
+        else{
+            newStr = newStr + n;
+        }
+    }
+        return (newStr);
     }
 
     public static String camelCase (String string) {
-        // Write your code here:
-        return "";
+    String newStr = "";
+    char n;
+    // cheking each letter making it lower case if 
+    //there are sapces deliting them and making the next letter upercase
+
+    for(int i = 0; i < string.length(); i++ ){
+    n = string.charAt(i);
+    if (65 <= n && n <= 90) {
+        newStr = (newStr + (char) (n + 32));
+    } else if (n == ' ') {
+        // Skip consecutive spaces
+        while (i < string.length() && string.charAt(i) == ' ') {
+            i++;
+        }
+        
+        // Convert the next character to uppercase
+        if (i < string.length()) {
+            n = string.charAt(i);
+            newStr = (newStr + (char) (n - 32));
+        }
+    } else {
+        newStr = newStr + n;
+    }
+}
+    
+        return (newStr);
     }
 
     public static int[] allIndexOf (String string, char chr) {
-        // Write your code here:
-        return new int[1];
+        int counter = 0;
+        char n;
+        for(int i = 0; i < string.length(); i++ ){
+            if(chr == string.charAt(i)){
+                counter++;
+            }
+        }
+
+        int counterArr = 0;
+        int [] arr =new int [counter];
+        for(int i = 0; i < string.length(); i++ ){
+            n = string.charAt(i);
+            if(n == chr){
+                arr [counterArr] = i ;
+                counterArr++;
+            }
+        }
+        return(arr);
     }
 }
