@@ -22,8 +22,8 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        //String test1 = "One two tHRee world";
-        //System.out.println(capVowelsLowRest(test1));
+        String test1 = "One two tHRee world";
+        System.out.println(capVowelsLowRest(test1));
         String test2 = "HELLO borld";
         System.out.println(camelCase(test2));
         System.out.println("test");
@@ -59,25 +59,26 @@ public class StringOps {
     // cheking each letter making it lower case if 
     //there are sapces deliting them and making the next letter upercase
 
-    for(int i = 0; i < string.length(); i++ ){
-    n = string.charAt(i);
-    if (65 <= n && n <= 90) {
-        newStr = (newStr + (char) (n + 32));
-    } else if (n == ' ') {
-        // Skip consecutive spaces
-        while (i < string.length() || string.charAt(i) == ' ') {
-            i++;
+    for (int i = 0; i < string.length(); i++) {
+        n = string.charAt(i);
+
+        if (65 <= n && n <= 90) {
+            newStr = (newStr + (char) (n + 32));
+        } else if (n == ' ') {
+            // Skip consecutive spaces
+            while (i < string.length() && string.charAt(i) == ' ') {
+                i++;
+            }
+
+            // Convert the next character to uppercase
+            if (i < string.length()) {
+                n = string.charAt(i);
+                newStr = (newStr + (char) (n - 32));
+            }
+        } else {
+            newStr = newStr + n;
         }
-        
-        // Convert the next character to uppercase
-        if (i < string.length()) {
-            n = string.charAt(i);
-            newStr = (newStr + (char) (n - 32));
-        }
-    } else {
-        newStr = newStr + n;
     }
-}
     
         return (newStr);
     }
