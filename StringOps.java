@@ -24,7 +24,7 @@ public class StringOps {
     public static void main(String[] args) {
         String test1 = "one two tHRee world";
         System.out.println(capVowelsLowRest(test1));
-        String test2 = "Intro to coMPUter sCIEncE";
+        String test2 = "  Intro to  coMPUter   sCIEncE   ";
         System.out.println(camelCase(test2));
     }
     
@@ -55,10 +55,15 @@ public class StringOps {
     public static String camelCase (String string) {
     String newStr = "";
     char n;
-    // cheking each letter making it lower case if 
+    int counter =0;
+    // deliting all the spaces befor the first word
+        if (string.charAt(0) == ' '){
+            while(string.charAt(counter) == ' '  && counter < string.length())
+            counter++;
+        }
+        // cheking each letter making it lower case if 
     //there are sapces deliting them and making the next letter upercase
-
-    for (int i = 0; i < string.length(); i++) {
+    for (int i = counter; i < string.length(); i++) {
         n = string.charAt(i);
         if (65 <= n && n <= 90) {
             newStr = (newStr + (char) (n + 32));
@@ -69,7 +74,7 @@ public class StringOps {
             }
 
             // Convert the next character to uppercase
-            if (i < string.length()) {
+            if (i < string.length() ) {
                 n = string.charAt(i);
                 newStr = (newStr + (char) (n - 32));
             }
