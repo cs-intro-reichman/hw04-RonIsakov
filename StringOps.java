@@ -22,7 +22,7 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        String test1 = "One two tHRee world";
+        String test1 = "one two tHRee world";
         System.out.println(capVowelsLowRest(test1));
         String test2 = "HELLO borld";
         System.out.println(camelCase(test2));
