@@ -22,11 +22,10 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        String test1 = "One two tHRee world";
+        String test1 = "one two tHRee world";
         System.out.println(capVowelsLowRest(test1));
-        String test2 = "HELLO borld";
+        String test2 = "Intro to coMPUter sCIEncE";
         System.out.println(camelCase(test2));
-        System.out.println("test");
     }
     
     
@@ -61,7 +60,6 @@ public class StringOps {
 
     for (int i = 0; i < string.length(); i++) {
         n = string.charAt(i);
-
         if (65 <= n && n <= 90) {
             newStr = (newStr + (char) (n + 32));
         } else if (n == ' ') {
