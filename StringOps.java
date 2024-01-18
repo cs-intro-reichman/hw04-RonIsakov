@@ -50,16 +50,16 @@ public class StringOps {
         return (Str);
         }
     
-    // takes a (valid) string as input and return the same string without spaces and all lower case
-    // except for the first letter of each word from the second word (incusive) and on
+    // make the input a single word instead of spaces making the first later after caps
     public static String camelCase (String string) {
         String Str = "";
         int counter = 0;
+        //making the string lower case
         string = lowCase(string);
         while(string.charAt(counter) == ' ' && counter < string.length() ){
         counter++;
         }
-        //going through the string char by char and mutating it according to the requirments
+        //going through the string making it without spaces making the first latter after a space caps
         for(int i = 0 ;i<string.length() ; i++) {
             if(string.charAt(i) == ' '){
                 while(string.charAt(i) == ' ' && i < string.length() ){
@@ -76,7 +76,7 @@ public class StringOps {
 
 
 
-    //take a (valid) string as input and return the same string with only lower cases letters
+    //taking a string making it all low caps
     public static String lowCase(String string) {
         String Str = "";
         for(int i = 0 ; i < string.length() ; i++)
@@ -87,23 +87,23 @@ public class StringOps {
         return Str;
     }
 
-    //takes a (valid) string and a char as input and return the indexes of the string in which the char appears
+    // taking a string and a char  and returning the indexes of the string in which the char appears in an array
     public static int[] allIndexOf (String string, char chr) {
         int counter = 0;
-        //checking how many times chr appears in string
+        int indexcounter=0;
+        int[] Index = new int[counter];
+        //checking how many times chr is in the string
         for(int i=0 ; i<string.length() ; i++) {
             if(string.charAt(i)==chr)
                 counter++;
         }
-        int j=0;
-        //declaaring an array to hold the wanted indexes
-        int[] chrIndex = new int[counter];
+        //making an array that holds all the indexes
         for(int i=0 ; i<string.length() ; i++) {
             if(string.charAt(i)==chr) {
-                chrIndex[j] = i;
-                j++;
+                Index[indexcounter] = i;
+                indexcounter++;
             }
         }
-        return chrIndex;
+        return Index;
     }
 }
