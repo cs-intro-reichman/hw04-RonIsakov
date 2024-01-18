@@ -69,7 +69,6 @@ public class StringOps {
         while(string.charAt(counter) == ' ' && counter < string.length() ){
         counter++;
         }
-        System.out.println(string.charAt(counter));
         //going through the string making it without spaces making the first latter after a space caps
         for(int i = counter ;i<string.length() ; i++) {
             if(string.charAt(i) == ' '){
