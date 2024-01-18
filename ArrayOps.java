@@ -1,145 +1,80 @@
-public class StringOps {
-    ////////////////////////////////////////////////////////////
-    //////                                               ///////
-    //////              Reminder:                        ///////
-    //////        allowed methods                        ///////
-    //////                                               ///////
-    //////        1.charAt(int index)                    ///////
-    //////        2.length()                             ///////
-    //////        3.substring(int start)                 ///////
-    //////        4.substring(int start,int ends)        ///////
-    //////        5.indexOf(String str)                  ///////
-    //////                                               ///////
-    //////        The rest are not allowed !             ///////
-    //////        if you want to use a different         ///////
-    //////        method, and you can implement          ///////
-    //////        it using material from the course      ///////
-    //////        you need to implement a version of     ///////
-    //////        the function by yourself.              ///////
-    //////                                               ///////
-    //////        see example for substring              ///////
-    //////        in Recitation 3 question 5             ///////
-    //////                                               ///////
-    ////////////////////////////////////////////////////////////
+public class ArrayOps {
     public static void main(String[] args) {
         
     }
-
-    public static String capVowelsLowRest (String string) {
-        for(int i = 0; i < string.length(); i++){
-            Character letter =  string.charAt(i);
-            if ((((int) letter) > 64) && (((int) letter) < 91)) {
-                if (i == 0) {
-                    string = (char)(((int) letter) + 32) + string.substring(i+1,string.length());
-                }else if ( i == string.length()) {
-                    string = string.substring(0, i) + (char)(((int) letter) + 32);
-                }else{
-                    string = string.substring(0, i) + (char)(((int) letter) + 32) + string.substring(i+1,string.length());
-                }
-            }
+    
+    //takes an array of integers {0,1,2...n} that is missing one integer, and return the value of the missing integer
+    public static int findMissingInt (int [] array) {
+        int n = array.length;
+        //declaring an array that holds true or false for each index if the corresponding index exist as value in the array or not
+        boolean check[] = new boolean[n+1];
+        for(int i=0 ; i<n ; i++) 
+            check[i] = false;
+        for(int i=0 ; i<n ; i++) {
+            check[array[i]] = true;
         }
-        for(int i = 0; i < string.length(); i++){
-            Character letter =  string.charAt(i);
-            if ((((int) letter) == 97) || (((int) letter) == 101) || (((int) letter) == 105) || (((int) letter) == 111) || (((int) letter) == 117)) {
-                if (i == 0) {
-                    string = (char)(((int) letter) - 32) + string.substring(i+1,string.length());
-                }else if ( i == string.length()) {
-                    string = string.substring(0, i) + (char)(((int) letter) - 32);
-                }else{
-                    string = string.substring(0, i) + (char)(((int) letter) - 32) + string.substring(i+1,string.length());
-                }
-            } 
-        }
-        return string;
+        int j = 0;
+        while(check[j])
+            j++;
+        return j;
     }
 
-    public static String camelCase (String string) {
-        int wordCounter = 0;
-        int letterInWord = 0;
-        for(int i = 0; i < string.length(); i++){
-            Character letter =  string.charAt(i);
-            
-            if ((int)(string.charAt(i)) == 32) {
-                if(i != 0){
-                    if(string.charAt(i-1) != 32){
-                        wordCounter++;
-                    }
-                }
-                letterInWord = 0;
-                if(i == 0){
-                    string = string.substring(i+1,string.length());
-                }else{
-                    string = string.substring(0, i) + string.substring(i+1,string.length());
-                }
-                i = i-1;
-            }else{
-                if (wordCounter == 0) {
-                    if ((((int) letter) > 64) && (((int) letter) < 91)) {
-                        if (i == 0) {
-                            string = (char)(((int) letter) + 32) + string.substring(i+1,string.length());
-                        }else if ( i == string.length()) {
-                            string = string.substring(0, i) + (char)(((int) letter) + 32);
-                        }else{
-                            string = string.substring(0, i) + (char)(((int) letter) + 32) + string.substring(i+1,string.length());
-                        }
-                    }
-                }else{
-                    if (letterInWord == 0) {
-                        if ((((int) letter) > 97) && (((int) letter) < 122)) { 
-                            if (i == 0) {
-                                string = (char)(((int) letter) - 32) + string.substring(i+1,string.length());
-                            }else if ( i == string.length()) {
-                                string = string.substring(0, i) + (char)(((int) letter) - 32);
-                            }else{
-                                string = string.substring(0, i) + (char)(((int) letter) - 32) + string.substring(i+1,string.length());
-                            }
-                        }
-                    }else{
-                        if ((((int) letter) > 64) && (((int) letter) < 91)) {
-                            if (i == 0) {
-                                string = (char)(((int) letter) + 32) + string.substring(i+1,string.length());
-                            }else if ( i == string.length()) {
-                                string = string.substring(0, i) + (char)(((int) letter) + 32);
-                            }else{
-                                string = string.substring(0, i) + (char)(((int) letter) + 32) + string.substring(i+1,string.length());
-                            }
-                        }
-                    }
-                    letterInWord++;
-                }
-
-                
+    //takes an array of integers as input and return the 2nd biggest integer in the array (return the 1st biggest integer if it appears more than once)
+    public static int secondMaxValue(int [] array) {
+        //declaring and initializing max and max2 as the smallest value of integer type variable
+        int max = Integer.MIN_VALUE;
+        int max2 = Integer.MIN_VALUE;
+        int maxIndex = 0;
+        //searching for the max value
+        for(int i=0 ; i<array.length ; i++) {
+            if(max<array[i]) {
+                max = array[i];
+                maxIndex = i;
             }
-
         }
-        return string;
+        //searching for the max without looking at the index of 'max'
+        for(int i=0 ; i<array.length ; i++) {
+            if(max2 < array[i] && i != maxIndex)
+                max2 = array[i];
+        }
+        return max2;
     }
 
-    public static int[] allIndexOf (String string, char chr) {
-        int arrayLength = 0;
-        for(int i = 0; i < string.length(); i++){
-            Character letter =  string.charAt(i);
-            if (letter == chr) {
-                arrayLength++;
-            }
-        }
-        int[] indexArray = new int[arrayLength];
-        for(int j = 0; j < arrayLength; j++){
-            for(int z = 0; z < string.length(); z++){
-                Character letter =  string.charAt(z);
-                if (letter == chr) {
-                    indexArray[j] = z;
-                    if (z == 0) {
-                        string = (char)(((int) letter) + 32) + string.substring(z+1,string.length());
-                    }else if ( z == string.length()) {
-                        string = string.substring(0, z) + (char)(((int) letter) + 32);
-                    }else{
-                        string = string.substring(0, z) + (char)(((int) letter) + 32) + string.substring(z+1,string.length());
-                    }
+    //takes 2 arrays of integers as input and return true if they contain the same integers (ignoring duplicates)
+    public static boolean containsTheSameElements(int [] array1,int [] array2) {
+        boolean check = true;
+        //checking if all of array1's integers appear in array2
+        for(int i=0 ; i<array1.length ; i++) {
+            for(int j=0 ; j<array2.length ; j++) {
+                if(array1[i]==array2[j])
                     break;
-                }
+                else if(j==array2.length-1)
+                    check = false;
             }
         }
-        return indexArray;
+        //checking if all of array2's integers appear in array1
+        for(int i=0 ; i<array2.length ; i++) {
+            for(int j=0 ; j<array1.length ; j++) {
+                if(array2[i]==array1[j])
+                    break;
+                else if(j==array1.length-1)
+                    check = false;
+            }
+        }
+        return check;
     }
+
+    // takes an array of integers as input and return true if the array is either increasing in value or decreasing as you go from index 0 to n
+    //ignoring equal values that are near eachother
+    public static boolean isSorted(int [] array) {
+        boolean increase=true, decrease=true;
+        for(int i=0 ; i<array.length-1 && (increase || decrease); i++) {
+            if(array[i]>array[i+1] && increase)
+                increase = false;
+            if(array[i]<array[i+1] && decrease)
+                decrease = false;
+        }
+        return increase || decrease;
+    }
+
 }
