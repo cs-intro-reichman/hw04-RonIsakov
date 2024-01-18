@@ -60,7 +60,7 @@ public class StringOps {
         counter++;
         }
         //going through the string char by char and mutating it according to the requirments
-        for(int i = i ;i<string.length() ; i++) {
+        for(int i = 0 ;i<string.length() ; i++) {
             if(string.charAt(i) == ' '){
                 while(string.charAt(i) == ' ' && i < string.length() ){
                     i++;
