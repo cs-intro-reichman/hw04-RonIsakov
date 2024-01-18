@@ -22,8 +22,18 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-    String check = "lOve You ALLLL";
+    String check = "One two tHRee world";
     System.out.println(capVowelsLowRest(check));
+    String check2 = "   One two tHRee world";
+    System.out.println(camelCase(check2));
+    String check3 = "MMMM";
+    char M ='M';
+    int []  test = new int[4];
+    test = allIndexOf(check3,M);
+    for (int i=0;i<4; i++){
+        System.out.print(test [i] + " ");
+    }
+
     }
 
     //makes all the vowels caps the rest lowCaps
@@ -59,8 +69,9 @@ public class StringOps {
         while(string.charAt(counter) == ' ' && counter < string.length() ){
         counter++;
         }
+        System.out.println(string.charAt(counter));
         //going through the string making it without spaces making the first latter after a space caps
-        for(int i = 0 ;i<string.length() ; i++) {
+        for(int i = counter ;i<string.length() ; i++) {
             if(string.charAt(i) == ' '){
                 while(string.charAt(i) == ' ' && i < string.length() ){
                     i++;
@@ -91,12 +102,12 @@ public class StringOps {
     public static int[] allIndexOf (String string, char chr) {
         int counter = 0;
         int indexcounter=0;
-        int[] Index = new int[counter];
         //checking how many times chr is in the string
         for(int i=0 ; i<string.length() ; i++) {
             if(string.charAt(i)==chr)
                 counter++;
         }
+        int[] Index = new int[counter];
         //making an array that holds all the indexes
         for(int i=0 ; i<string.length() ; i++) {
             if(string.charAt(i)==chr) {
