@@ -1,80 +1,112 @@
 public class ArrayOps {
     public static void main(String[] args) {
+
+    int  [] testArray = {0,2,3};
+    int testing1 =0 ;
+    testing1 = findMissingInt(testArray);
+    System.out.println("sissing int is " + testing1);
+
+    int testing2 =0 ;
+    testing2 = secondMaxValue(testArray);
+    System.out.println("second max value is " + testing2);
         
-    }
+
+    int  [] testArray2 = {0,1};
+    int  [] testArray3 = {0,3,1};
+    System.out.println(containsTheSameElements(testArray2,testArray3));
+
     
-    //takes an array of integers {0,1,2...n} that is missing one integer, and return the value of the missing integer
+    int  [] testArray4 = {2,5,0};
+    boolean tes = isSorted(testArray4);
+    System.out.println(tes);
+    }
+
+    
     public static int findMissingInt (int [] array) {
-        int n = array.length;
-        //declaring an array that holds true or false for each index if the corresponding index exist as value in the array or not
-        boolean check[] = new boolean[n+1];
-        for(int i=0 ; i<n ; i++) 
-            check[i] = false;
-        for(int i=0 ; i<n ; i++) {
-            check[array[i]] = true;
-        }
-        int j = 0;
-        while(check[j])
-            j++;
-        return j;
+        // defining integers so the program is more readable
+    int sum = 0 ;
+    int n = array.length;
+    
+    //calculating the sum of the array and finding the biggest int
+    for (int i = 0; i < n; i++ ){
+        sum = sum + array[i];
+    }
+    // calculating the sum of theArithmetic progression
+    int sumTotal = (( (n + 1) * (0 + n) ) / 2 );
+
+    // returning the missing int as the sum of theArithmetic progression - the actual sum of the arry
+    return(sumTotal - sum );   
     }
 
-    //takes an array of integers as input and return the 2nd biggest integer in the array (return the 1st biggest integer if it appears more than once)
     public static int secondMaxValue(int [] array) {
-        //declaring and initializing max and max2 as the smallest value of integer type variable
-        int max = Integer.MIN_VALUE;
-        int max2 = Integer.MIN_VALUE;
-        int maxIndex = 0;
-        //searching for the max value
-        for(int i=0 ; i<array.length ; i++) {
-            if(max<array[i]) {
-                max = array[i];
-                maxIndex = i;
+        //defining an array and for readebility n as length of the array array
+        int n = array.length;
+        int[] sorted = new int[n];
+        // defining sorted as array
+        for(int i=0; i < n; i++){
+            sorted[i] = array[i];
+        }
+        // sorting the array sorted by size
+        for(int i=0; i<n-1 ;i++){
+            for(int j = 0 ;j < (n-i-1) ;j++) {
+                if(sorted[j] > sorted[j+1]){
+                    int temp = sorted[j+1];
+                    sorted[j+1] =  sorted[j];
+                    sorted[j] = temp;
+                }
             }
         }
-        //searching for the max without looking at the index of 'max'
-        for(int i=0 ; i<array.length ; i++) {
-            if(max2 < array[i] && i != maxIndex)
-                max2 = array[i];
+        return(sorted[n-2]);   
         }
-        return max2;
-    }
+        
+    
 
-    //takes 2 arrays of integers as input and return true if they contain the same integers (ignoring duplicates)
     public static boolean containsTheSameElements(int [] array1,int [] array2) {
-        boolean check = true;
-        //checking if all of array1's integers appear in array2
-        for(int i=0 ; i<array1.length ; i++) {
-            for(int j=0 ; j<array2.length ; j++) {
-                if(array1[i]==array2[j])
-                    break;
-                else if(j==array2.length-1)
-                    check = false;
+        //cheking if the array1 and array2 contain the same elements
+        boolean returning = true;
+        int counter =0;
+        for (int i =0; i < array1.length; i++){
+            for(int j=0 ; j < array2.length; j++){
+                if (array1[i] == array2[j]){
+                    counter++;
+                }
             }
-        }
-        //checking if all of array2's integers appear in array1
-        for(int i=0 ; i<array2.length ; i++) {
-            for(int j=0 ; j<array1.length ; j++) {
-                if(array2[i]==array1[j])
-                    break;
-                else if(j==array1.length-1)
-                    check = false;
+            if(counter < 1){
+                returning = false;
+                break;
             }
+            counter = 0;
         }
-        return check;
-    }
+        return(returning);
+}
 
-    // takes an array of integers as input and return true if the array is either increasing in value or decreasing as you go from index 0 to n
-    //ignoring equal values that are near eachother
-    public static boolean isSorted(int [] array) {
-        boolean increase=true, decrease=true;
-        for(int i=0 ; i<array.length-1 && (increase || decrease); i++) {
-            if(array[i]>array[i+1] && increase)
-                increase = false;
-            if(array[i]<array[i+1] && decrease)
-                decrease = false;
+    
+
+    public static boolean isSorted (int [] array) {
+    boolean sorted1 = false;
+    boolean sorted2 = false;
+    int counter1 = 0;
+    int counter2 = 0;
+    int n = array.length;
+    //checking if the set is orginized from min to max
+    for(int i=0; i<n-1; i++){
+        if(array[i] < array[i+1] ){
+            counter1++;
         }
-        return increase || decrease;
     }
-
+        if (counter1 == n-1){
+            sorted1 =true;
+        }
+        //checking if the set is orginized from max to min
+        for(int j=0; j<n-1; j++){
+            if(array[j] > array[j+1] ){
+                counter2++;
+            }
+    }
+    if (counter2 == n-1){
+        sorted2 =true;
+    }
+    //if it os organized returns true 
+    return (sorted1 || sorted2);
+}
 }
